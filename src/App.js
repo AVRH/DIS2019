@@ -1,28 +1,19 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Body from './components/body'
+import GroupList from './components/GroupList'
 
-class App extends Component {
-  render() {
-    return (
+const  App = (props) => {
+  return (
+    <div>
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+        <p> Form a study group</p>
         </header>
       </div>
+        <GroupList />
+    </div>
     );
-  }
 }
 
 export default App;
