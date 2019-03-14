@@ -11,10 +11,8 @@ export const changeGroup = (group) => {
 const groupReducer = (state = group, action )=> {
     switch(action.type){
         case 'CHANGE':
-            console.log('in reducer')
             return action.data.group
         default:
-            console.log('wrong place')
             return state
     }
 }

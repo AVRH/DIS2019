@@ -2,6 +2,10 @@ import React from 'react'
 import {changeGroup} from '../reducers/groupReducer'
 import { connect } from 'react-redux'
 import {List ,Grid, Header, Button} from 'semantic-ui-react'
+import {
+    BrowserRouter as Router,
+    Route, Link, Redirect, withRouter
+  } from 'react-router-dom'
 
 const GroupList = (props) => {
     return(
@@ -10,8 +14,8 @@ const GroupList = (props) => {
                 <Header as="h2" textAlign="center">
                 Active Groups
                 </Header>
-                <List divided relaxed>
-                    <List.Item>
+                <List divided relaxed animated>
+                    <List.Item> 
                         <List.Content>
                             <List.Header>Group 1</List.Header>
                             <List.Description>Active in room 204 from 10.00 to 11.00</List.Description>
@@ -24,7 +28,9 @@ const GroupList = (props) => {
                         </List.Content>
                     </List.Item>
                 </List>
-                <Button>Add new group</Button>
+                <Link to='/addgroup'>
+                    <Button>Add new group</Button>
+                </Link>
         </Grid.Column>
         </Grid>
     )
