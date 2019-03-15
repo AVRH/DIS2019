@@ -1,7 +1,7 @@
 import React from 'react'
-import {changeGroup} from '../reducers/groupReducer'
 import { connect } from 'react-redux'
 import {List ,Grid, Header, Button} from 'semantic-ui-react'
+import GroupListItem from './GroupListItem'
 import {
     BrowserRouter as Router,
     Route, Link, Redirect, withRouter
@@ -15,18 +15,7 @@ const GroupList = (props) => {
                 Active Groups
                 </Header>
                 <List divided relaxed animated>
-                    <List.Item> 
-                        <List.Content>
-                            <List.Header>Group 1</List.Header>
-                            <List.Description>Active in room 204 from 10.00 to 11.00</List.Description>
-                        </List.Content>
-                    </List.Item>
-                    <List.Item>
-                        <List.Content>
-                            <List.Header>Group 2</List.Header>
-                            <List.Description>Active in room 205 from 10.00 to 11.00</List.Description>
-                        </List.Content>
-                    </List.Item>
+                    {props.group.map(g => <GroupListItem group={g}/>)}
                 </List>
                 <Link to='/addgroup'>
                     <Button>Add new group</Button>
@@ -41,10 +30,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps =  {
-        changeGroup
-}
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    null
 )(GroupList)

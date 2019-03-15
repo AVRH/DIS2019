@@ -1,17 +1,28 @@
-const group = ''
+const groups = [
+    {
+        name: 'FullStack tehtava 1 tukiryhma',
+        creatorName: 'user1',
+        Location: 'A111',
+        startTime: '10:58',
+        active: true,
+        id: 1
+    }
+]
 
-export const changeGroup = (group) => {
+
+
+export const changeGroup = (data) => {
+    
     return{
-        type:'CHANGE',
-        data:{
-            group
-        }
+        type:'ADD',
+        data
     }
 }
-const groupReducer = (state = group, action )=> {
+const groupReducer = (state = groups, action )=> {
     switch(action.type){
-        case 'CHANGE':
-            return action.data.group
+        case 'ADD':
+            console.log(action.data)
+            return [...state, action.data]
         default:
             return state
     }

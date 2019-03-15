@@ -1,6 +1,7 @@
 import React from 'react'
 import {changeGroup} from '../reducers/groupReducer'
 import { connect } from 'react-redux'
+import {withRouter} from "react-router-dom";
 import { Button 
         ,Grid
         ,Header
@@ -9,14 +10,21 @@ import { Button
         ,Select} from 'semantic-ui-react'
 
 
-const GroupSelector = ({group}) => {
-    return(
-        <option value={group}>{group}</option>
-    )
-}
 const Body = (props) => {
-    const selectGroup =(event) => {
-        props.changeGroup(event.target.value)
+
+    const addGroup =(event) => {
+        event.preventDefault()
+        const newGroup = {
+            name: event.target.groupname.value,
+            creatorName: event.target.username.value,
+            Location: 'A111',
+            startTime: new Date().toLocaleTimeString(),
+            active: true,
+            id: 2
+        }
+        props.changeGroup(newGroup)
+        props.history.push('/')
+
     }
     return(
         <Grid centered verticalAlign='middle'>
@@ -25,22 +33,21 @@ const Body = (props) => {
                 Add A Group
                 </Header>
                 <Segment>
-                    <Form>
+                    <Form onSubmit={addGroup}>
                         <Form.Field>
                             <label>Group Name</label>
-                            <input placeholder="Group Name" />
+                            <input name='groupname' placeholder="Group Name" />
                         </Form.Field>
                         <Form.Field>
                             <label>Username</label>
-                            <input placeholder="Username" />
+                            <input name='username' placeholder="Username" />
                         </Form.Field>
                         <Form.Field>
                             <label>Telegram Group</label>
                             <Select 
-                                options={[{value: 'Group', text: 'Designing Interactive Systems'}]}
-                                onChange={selectGroup}/>
+                                options={[{value: 'Group', text: 'Designing Interactive Systems'}]}/>
                         </Form.Field>
-                        <Button>Add group</Button>
+                        <Button type='submit'>Add</Button>
                     </Form>
                 </Segment>
             </Grid.Column>
@@ -60,4 +67,4 @@ const mapDispatchToProps =  {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Body)
+)(withRouter(Body))

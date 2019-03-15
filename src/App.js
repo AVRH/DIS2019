@@ -14,7 +14,7 @@ const  App = (props) => {
       <div>
         <HeaderBar />
         <Route exact path="/" render={() =>
-          <GroupList/>
+          <GroupList />
         } />
         <Route exact path="/addgroup" render={() =>
           <Body/>
